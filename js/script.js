@@ -1,7 +1,14 @@
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
 // Start of Code
+
+// JS Button click to execute printQuote
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+
 // strict (Good to use)
+
+
 'use strict'
 
 // The array that will contain the Quotes
@@ -9,36 +16,36 @@ var quotes = [];
 
 // Adding First quote as an object in the curly braces
 quotes[0] = {quote: "Moral indignation is jealousy with a halo.",
-             source: "H.G. Wells",
-             category: "Literature"};
+             source: "H.G. Wells, ",
+             category: " Literature"};
 // Adding Second quote as an object in curly braces
 quotes[1] = {quote: "Be yourself; everyone else is already taken.",
-             source: "Oscar Wilde",
-             category: "Literature"};
+             source: "Oscar Wilde, ",
+             category: " Literature"};
 //Adding Third quote as an object in the curly braces
 quotes[2] = {quote: "So many books, so little time.",
-             source: "Frank Zappa",
-             category: "Humor"};
+             source: "Frank Zappa, ",
+             category: " Humor"};
 //Adding Fourth quote an object in the curly braces
 quotes[3] = {quote: "A room without books is like a body without a soul",
-             source: "Marcus Tullius Cicero",
-             category: "Soul"};
+             source: "Marcus Tullius Cicero, ",
+             category: " Soul"};
 //Adding Fifth quote as an object in the curly braces
 quotes[4] = {quote: "You only live once, but if you do it right, once is enough.",
-             source: "Mae West",
-             category: "Life"};
+             source: "Mae West, ",
+             category: " Life"};
 //Adding sixth quote as an object in the curly braces
 quotes[5] = {quote: "Be the change that you wish to see in the world.",
-             source: "Mahatma Gandhi",
-             category: "Philosophy"};
+             source: "Mahatma Gandhi, ",
+             category: " Philosophy"};
 //Adding seventh quote as an object in the curly braces
 quotes[6] = {quote: "If you tell the truth, you don't have to remember anything.",
-             source: "Mark Twain",
-             category: "Memory"};
+             source: "Mark Twain, ",
+             category: " Memory"};
 //Adding eigth quote as an object in the curly braces
 quotes[7] = {quote: "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.",
-             source: "Martin Luther King Jr.",
-             category: "Love"};
+             source: "Martin Luther King Jr., ",
+             category: " Love"};
 
 // For debugging purposes, this code will log the quotes array to the console.
 console.log(quotes);
@@ -73,7 +80,7 @@ else {
 };
 
 // Defines the printQuote function
-function printQuote(){
+function printQuote() {
 // Uses the getRandomQuote function to get a random quote object from the auotes array
 var randomQuote = getRandomQuote(quotes, quotesOther, times);
 //Debugging, console.log();
@@ -99,7 +106,7 @@ if (typeof randomQuote.year != "undefined"){
 };
 //category is an additonal optional field so the html text will only be added if the citation field is present
 if (typeof randomQuote.category != "undefined") {
-  quoteString += "<span class='category'>";
+  quoteString += "<span class=' category'>";
   quoteString += randomQuote.category;
   quoteString += "</span>";
 };
@@ -150,5 +157,3 @@ getRandomColourButton();
 printQuote();
 // call function after set interval of time which is 10 seconds
 setInterval('printQuote()', 10000);
-// JS Button click to execute printQuote
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
