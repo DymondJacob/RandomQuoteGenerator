@@ -1,7 +1,6 @@
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
- // document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
+// Start of Code
 // strict (Good to use)
 'use strict'
 
@@ -16,11 +15,11 @@ quotes[0] = {quote: "Moral indignation is jealousy with a halo.",
 quotes[1] = {quote: "Be yourself; everyone else is already taken.",
              source: "Oscar Wilde",
              category: "Literature"};
-//Adding Third quotes as an object in the curly braces
+//Adding Third quote as an object in the curly braces
 quotes[2] = {quote: "So many books, so little time.",
              source: "Frank Zappa",
              category: "Humor"};
-//Adding Fourth quotes an object in the curly braces
+//Adding Fourth quote an object in the curly braces
 quotes[3] = {quote: "A room without books is like a body without a soul",
              source: "Marcus Tullius Cicero",
              category: "Soul"};
@@ -32,7 +31,7 @@ quotes[4] = {quote: "You only live once, but if you do it right, once is enough.
 quotes[5] = {quote: "Be the change that you wish to see in the world.",
              source: "Mahatma Gandhi",
              category: "Philosophy"};
-//Adding seventh quotes as an object in the curly braces
+//Adding seventh quote as an object in the curly braces
 quotes[6] = {quote: "If you tell the truth, you don't have to remember anything.",
              source: "Mark Twain",
              category: "Memory"};
@@ -56,11 +55,11 @@ if (b.length < number) {
   // Picks random number based on quote array element length
   var num = Math.floor(Math.random() * a.length);
   //Move it out of the quotes array and then assign it to the name variable
-  var qu = a.splice(num,1);
-  // this pushes the qu variable into the other array
-  b.push(qu[0]);
+  var ou = a.splice(num,1);
+  // this pushes the ou variable into the other array
+  b.push(ou[0]);
   // Returns the quote object from the function, making sure none are duplicated until all are used
-  return qu[0];
+  return ou[0];
 }
 // When the other array is then full
 else {
@@ -75,5 +74,81 @@ else {
 
 // Defines the printQuote function
 function printQuote(){
-  
+// Uses the getRandomQuote function to get a random quote object from the auotes array
+var randomQuote = getRandomQuote(quotes, quotesOther, times);
+//Debugging, console.log();
+console.log(quotes);
+//Debugging
+console.log(quotesOther);
+//Consturct an html statement from string text and the quote object, starting off with quote and source
+var quoteString = "<p class='quote'>";
+quoteString += randomQuote.quote;
+quoteString += "<p> <p class='source'>";
+quoteString += randomQuote.source;
+//citation is optional field so html text will only be added if the citation field is present
+if (typeof randomQuote.citation != "undefined") {
+  quoteString += "<span class='citation'>"
+  quoteString += randomQuote.citation;
+  quoteString += "</span>";
+};
+//year is an optional field so the html text will only be added if the ciation field is present
+if (typeof randomQuote.year != "undefined"){
+  quoteString += "<span class='year'>";
+  quoteString += randomQuote.year;
+  quoteString += "</span>";
+};
+//category is an additonal optional field so the html text will only be added if the citation field is present
+if (typeof randomQuote.category != "undefined") {
+  quoteString += "<span class='category'>";
+  quoteString += randomQuote.category;
+  quoteString += "</span>";
+};
+quoteString += "</p>"
+//inesrt the constructed html string into the document
+document.getElementById('quote-box').innerHTML = quoteString;
+//produces a random color for body background color
+function getRandomColourBackground(){
+  // create an array of HEX characters
+  var hexadecscale = "0123456789AVCDEF".split('');
+  // hexidecimal quoteString
+  var hexadec = '#';
+  var i = 0
+  while (i<6) {
+    //picks a hex character and adds it to the hexdec String
+    hexadec += hexadecscale[Math.floor(Math.random() * 16)];
+    i += 1;
+  }
+  // to make sure color works, console.log color
+  console.log(hexadec);
+  //set body background color
+  document.body.style.backgroundColor = hexadec;
 }
+//random colour generator for button background color, makes it look nicer
+function getRandomColourbutton(){
+  //Array of hexadecimal characters
+  var hexadecscale = "0123456789ABCDEF".split('');
+  // hexidecimal String
+  var hexadec = '#';
+  var i = 0;
+  while (i<6) {
+    hexadec += hexadecscale[Math.floor(Math.random() * 16)];
+    i += 1;
+  }
+  //console.log the color to make sure that it is working
+  console.log(hexadec);
+  //sets the background colour
+  document.getElementById("loadQuote").style.backgroundColor = hexadec;
+  }
+
+//call function
+getRandomColourBackground();
+// call function
+getRandomColourButton();
+}
+
+//call printQuote function upon initial page load
+printQuote();
+// call function after set interval of time which is 10 seconds
+setInterval('printQuote()', 10000);
+// JS Button click to execute printQuote
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
